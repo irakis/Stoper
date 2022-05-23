@@ -34,7 +34,7 @@ const App = () => {
   console.log('numberToTime: ',clockFunctions.numberToTime(1003));
 
   return (
-    <div className={styles.container}>
+    <div>
         <Clock porps={time} action={clockFunctions} />
     </div>
   );
