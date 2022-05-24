@@ -1,17 +1,34 @@
-//import { numberToTime } from '../App.js';
-//import { myInterval, myResetInterval, myStopInterval } from '../App'
+import { useEffect, useState } from 'react';
+import styles from '../components/Clock.module.css';
 
 const Clock = (props) => {
 
+    const [time, setTime] = useState(0);
+
+    const start = () => {
+        setInterval((time) => {
+            setTime(prevValue => prevValue + 1);
+        }, 1);
+    }
+
+    const timeToDisplay = props.action(time);
+
+    const stop =
+        useEffect(() => {
+            return () => {
+                if (time) clearInterval(start);
+            };
+        }, []);
+
     return (
-        <div>
-            <input type='text' value={props}>{props.action.numberToTime(props)}</input>
+        <div className={styles.container}>
+            <p className={styles.displayField}>{timeToDisplay}</p>
 
-            <button onClick={e => props.action.myStartInterval(props)}>START</button>;
+            <button className={styles.button} onClick={e => start(time)}>START</button>
 
-            <button onClick={e => props.action.myStopInterval(props)}>STOP</button >;
+            <button className={styles.button} onClick={e => stop}>STOP</button >
 
-            <button onClick={e => props.action.myResetInterval(props)}> RESET</button >;
+            <button className={styles.button} onClick={e => setTime(time === 0)}> RESET</button >
         </div >
     );
 };
