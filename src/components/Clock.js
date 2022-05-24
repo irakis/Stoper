@@ -1,5 +1,5 @@
-import { numberToTime } from '../App.js';
-import { myInterval, myResetInterval, myStopInterval } from '../App'
+//import { numberToTime } from '../App.js';
+//import { myInterval, myResetInterval, myStopInterval } from '../App'
 
 const Clock = (props) => {
 

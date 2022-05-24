@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Clock from './components/Clock';
 import './App.css';
 
@@ -6,24 +6,24 @@ const App = () => {
   const [time, setTime] = useState(0);
   const clockFunctions = {};
 
-  const start = setInterval(() => {
+  const start = setInterval((time) => {
       setTime(preValue => preValue + 1);
     }, 1);
 
   clockFunctions.myStartInterval = start;
 
-  const myStopInterval = clearInterval(clockFunctions.myStartInterval);
+  clockFunctions.myStopInterval = clearInterval(clockFunctions.myStartInterval);
   //clearInterwal nie działa, xle napisana?
 
-  clockFunctions.myResetInterval = setTime(time == 0);
+  clockFunctions.myResetInterval = setTime(time === 0);
 
-  clockFunctions.numberToTime = (time) => {
+  const numberToTime = () => {
     const miliseconds = parseInt(time, 10);
-    const hours = Math.floor(miliseconds / 3600000);
-    const minutes = Math.floor((miliseconds - (hours * 3600000)) / 60000);
-    const seconds = Math.floor((miliseconds - (hours * 3600000) - (minutes * 60000))/1000);
-    const mili_seconds = miliseconds - seconds * 1000;
-    console.log(miliseconds,' : ', hours, ' : ',minutes, ' : ' ,seconds, ' . ',mili_seconds);
+    let hours = Math.floor(miliseconds / 3600000);
+    let minutes = Math.floor((miliseconds - (hours * 3600000)) / 60000);
+    let seconds = Math.floor((miliseconds - (hours * 3600000) - (minutes * 60000))/1000);
+    let mili_seconds = miliseconds - seconds * 1000;
+  
     if (hours < 10) { hours = "0" + hours; }
     if (minutes < 10) { minutes = "0" + minutes; }
     if (seconds < 10) { seconds = "0" + seconds; }
@@ -31,7 +31,7 @@ const App = () => {
     //return nie działa
   }
 
-  console.log('numberToTime: ',clockFunctions.numberToTime(1003));
+  
 
   return (
     <div>
