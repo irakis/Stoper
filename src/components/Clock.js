@@ -4,46 +4,35 @@ import styles from '../components/Clock.module.css';
 const Clock = (props) => {
 
     const [time, setTime] = useState(0);
-    const [stateIntervalId, setIntervalId] = useState(0);
-
-    const timer = () => {
-        setInterval(() => {
-            setTime(prevTime => prevTime + 1);
-        }, 1);
-    }
+    const [isStopped, setIsStopped] = useState(true);
 
     const timeToDisplay = props.action(time);
 
-
-    
-
-    const stop = () => {
-        if (stateIntervalId) {
-            clearInterval(stateIntervalId);
-            setIntervalId(0);
-            return
+    useEffect(() => {
+        let interval = null;
+        if (!isStopped) {
+            interval = //dlaczego jak wpiszę let interval, stop przestaje działać?
+                setInterval(() => {
+                    setTime(prevTime => prevTime + 1);
+                }, 1);
+        } else {
+            clearInterval(interval);
         }
-        const newIntervalId = setInterval(() => {
-            setTime(prevTime => prevTime + 1)
-        }, 1);
-        setIntervalId(newIntervalId);
-    
-    return () => {
-        if (time) clearInterval(timer);
-    },[] 
-};
 
-return (
-    <div className={styles.container}>
-        <p className={styles.displayField}>{timeToDisplay}</p>
+        return () => {
+            clearInterval(interval);
+        };
+    }, [isStopped]);
 
-        <button className={styles.button} onClick={timer}>START</button>
+    return (
+        <div className={styles.container}>
+            <p className={styles.displayField}>{timeToDisplay}</p>
 
-        <button className={styles.button} onClick={e => stop}>STOP</button >
-
-        <button className={styles.button} onClick={e => setTime(time === 0)}> RESET</button >
-    </div >
-);
+            <button className={styles.button} onClick={e => setIsStopped(false)}>START</button>
+            <button className={styles.button} onClick={e => setIsStopped(true)}>STOP</button >
+            <button className={styles.button} onClick={e => setTime(time === 0)}> RESET</button >
+        </div >
+    );
 };
 
 export default Clock;
