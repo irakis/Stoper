@@ -1,5 +1,5 @@
 import Clock from './components/Clock';
-import './App.module.css';
+import styles from './App.module.css';
 
 const App = () => {
 
@@ -18,7 +18,7 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
         <Clock action={numberToTime} />
     </div>
   );

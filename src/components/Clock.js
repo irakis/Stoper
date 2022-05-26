@@ -25,12 +25,11 @@ const Clock = (props) => {
     }, [isStopped]);
 
     return (
-        <div className={styles.container}>
+        <div className={styles.main_container}>
             <p className={styles.displayField}>{timeToDisplay}</p>
-
-            <button className={styles.button} onClick={e => setIsStopped(false)}>START</button>
+            <button className={styles.button_left} onClick={e => setIsStopped(false)}>START</button>
             <button className={styles.button} onClick={e => setIsStopped(true)}>STOP</button >
-            <button className={styles.button} onClick={e => setTime(time === 0)}> RESET</button >
+            <button className={styles.button_right} onClick={e => setTime(time === 0)}> RESET</button >
         </div >
     );
 };
