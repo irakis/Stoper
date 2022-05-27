@@ -5,5 +5,8 @@ body {
     font-size: 14px;
     color: #fff;
     letter-spacing: 2.9px;
-}
 
+    @media (max-width: 599px) {
+        margin: 12px;
+    }
+}

@@ -74,8 +74,10 @@
     color: #ffffff;
     border-radius: 5px;
     justify-content: center;
+
     @media (max-width: 599px) {
-        font-size: 14px;
+        font-size: 34px;
+        margin: 12px;
     }
 }
 
@@ -87,6 +89,7 @@
     .button_left {
         margin: 12px;
     }
+
     p {
         font-size: 16px;
     }

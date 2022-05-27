@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import styles from '../components/Clock.module.css';
+import styles from '../components/Clock.module.scss';
 
 const Clock = (props) => {
 
@@ -11,14 +11,12 @@ const Clock = (props) => {
     useEffect(() => {
         let interval = null;
         if (!isStopped) {
-            interval = //dlaczego jak wpiszę let interval, stop przestaje działać?
-                setInterval(() => {
-                    setTime(prevTime => prevTime + 1);
-                }, 1);
+            interval = setInterval(() => {
+                setTime(prevTime => prevTime + 10);
+            }, 10);
         } else {
             clearInterval(interval);
         }
-
         return () => {
             clearInterval(interval);
         };
